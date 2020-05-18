@@ -1,0 +1,30 @@
+{
+  "name": "footballteam",
+  "version": "1.0.0",
+  "description": "Application for looking football stuffs",
+  "main": "main.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "author": "Cahya",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.5"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "idb": "1.0.1",
+    "js": "^0.1.0",
+    "lib": "^4.1.4",
+    "web-push": "^3.4.4"
+  },
+  "browserslist": [
+    "last 3 and_chr versions",
+    "last 3 chrome versions",
+    "last 3 opera versions",
+    "last 3 ios_saf versions",
+    "last 3 safari versions"
+  ]
+}
