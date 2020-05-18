@@ -2,7 +2,7 @@ import 'regenerator-runtime/runtime'
 import './library/materialize.min.css';
 import './library/materialize.min.js';
 import './styles.scss';
-import $ from './settings/selector.js';
+import $ from './utils/selector.js';
 import Navigation from './components/Navigation/Navigation.component.js';
 import Teams from './pages/Teams/Teams.page.js';
 import { getTeams } from './pages/Teams/Teams.api.js';
