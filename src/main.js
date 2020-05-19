@@ -1,4 +1,4 @@
-import 'regenerator-runtime/runtime'
+import 'regenerator-runtime/runtime';
 import './library/materialize.min.css';
 import './library/materialize.min.js';
 import './styles.scss';
@@ -16,28 +16,34 @@ const app = {
         link.addEventListener('click', app.nav);
     })
     // Default page
-    $('.fcontent').innerHTML = Competitions();
-    getCompetitions($('.cards-competitions'))
-    history.replaceState({}, 'competitions', '#competitions');
+    let currentPage = 'competitions';
+    history.replaceState({}, currentPage, `#${currentPage}`);
+    app.route(currentPage);
     window.addEventListener('popstate', app.poppin);
   },
-  nav: function(ev){
-    ev.preventDefault();
-    let currentPage = ev.target.getAttribute('data-target');
+  nav: function(event){
+    event.preventDefault();
+    let currentPage = event.target.getAttribute('data-target');
+    history.pushState({}, currentPage, `#${currentPage}`);
     app.route(currentPage)
   },
   poppin: function(){
     let currentPage = location.hash.replace('#' ,'');
+    history.pushState({}, currentPage, `#${currentPage}`);
     app.route(currentPage)
   },
   route: function(currentPage){
     if(currentPage === "competitions"){
-      history.pushState({}, currentPage, `#${currentPage}`);
       $('.fcontent').innerHTML = Competitions();
       getCompetitions($('.cards-competitions'));
     }else if(currentPage === "teams"){
-      history.pushState({}, currentPage, `#${currentPage}`);
       $('.fcontent').innerHTML = Teams();
+      getTeams($('.cards-teams'));
+    }else if(currentPage === "savedCompetitions"){
+      $('.fcontent').innerHTML = 'test';
+      getTeams($('.cards-competitions'));
+    }else if(currentPage === "favoriteTeams"){
+      $('.fcontent').innerHTML = 'test2';
       getTeams($('.cards-teams'));
     }
   }
@@ -53,24 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     $('.nav-content').forEach(nav => nav.innerHTML = Navigation());
 
     //Call Pages
-    app.init()
-    console.log();
+    app.init();
 
 })
-
-// REGISTER SERVICE WORKER
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function() {
-    navigator.serviceWorker
-      .register("/service-worker.js")
-      .then(function() {
-        console.log("Registering ServiceWorker successfull");
-      })
-      .catch(function() {
-        console.log("Registering ServiceWorker failed");
-      });
-  });
-} else {
-  console.log("ServiceWorker not supported in this browser.");
-}
-

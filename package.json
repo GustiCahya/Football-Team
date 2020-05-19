@@ -10,14 +10,18 @@
   "author": "Cahya",
   "license": "ISC",
   "devDependencies": {
+    "add": "^2.0.6",
     "parcel-bundler": "^1.12.4",
-    "sass": "^1.26.5"
+    "parcel-plugin-workbox": "^0.2.0",
+    "sass": "^1.26.5",
+    "yarn": "^1.22.4"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "idb": "1.0.1",
     "js": "^0.1.0",
     "lib": "^4.1.4",
+    "parcel-plugin-pwa-manifest": "^3.0.6",
     "web-push": "^3.4.4"
   },
   "browserslist": [
@@ -26,5 +30,30 @@
     "last 3 opera versions",
     "last 3 ios_saf versions",
     "last 3 safari versions"
-  ]
+  ],"workbox": {
+    "importScripts": ["./worker.js"],          
+    "globDirectory": "./dist"
+  },
+  "pwaManifest": {
+    "name": "Football Team",
+    "shortName": "Football",
+    "startURL": "./",
+    "display": "standalone",
+    "theme": "#212121",
+    "background": "#0e0c18",
+    "generateIconOptions": {
+      "baseIcon": "./src/images/icons/icon.png",
+      "sizes": [
+        72,
+        96,
+        128,
+        144,
+        152,
+        192,
+        384,
+        512
+      ],
+      "genFavicons": true
+    }
+  }
 }

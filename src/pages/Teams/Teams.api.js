@@ -1,17 +1,17 @@
-import {BASE_URL, CREDENTIALS} from '../../settings/api.js'
-import Spinner from '../../components/Spinner/Spinner.component.js'
+import {BASE_URL, CREDENTIALS} from '../../settings/api.js';
+import Spinner from '../../components/Spinner/Spinner.component.js';
 
 export const getTeams = async (section) => {
     section.innerHTML = Spinner();
     const response = await fetch(BASE_URL+"teams", CREDENTIALS);
     const value = await response.json();
-    let teams = '';
-    value.teams.filter(({crestUrl}) => crestUrl).forEach((team) => {
-        const {name, area, tla, crestUrl, shortName, address, phone, website, email, founded, clubColors, venue, lastUpdated} = team;
-        teams += `
+    const teams = value.teams
+        .filter(({crestUrl}) => crestUrl)
+        .reduce((accumulator, {name, area, tla, crestUrl, shortName, address, phone, website, email, founded, clubColors, venue, lastUpdated}) => (
+        accumulator += `
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img src="${crestUrl}" class="activator">
+                    <img src="${crestUrl}" alt="${name} picture" class="activator">
                 </div>
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">
@@ -37,6 +37,6 @@ export const getTeams = async (section) => {
                 </div>
             </div>
         `
-    });
+    ), '');
     section.innerHTML = teams;
 }

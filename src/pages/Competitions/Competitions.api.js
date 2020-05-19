@@ -1,15 +1,17 @@
-import {BASE_URL, CREDENTIALS} from '../../settings/api.js'
+import {BASE_URL, CREDENTIALS} from '../../settings/api.js';
+import Spinner from '../../components/Spinner/Spinner.component.js';
 
 export const getCompetitions = async (section) => {
+    section.innerHTML = Spinner();
     const response = await fetch(BASE_URL+"competitions", CREDENTIALS);
     const value = await response.json();
-    let competitions = '';
-    value.competitions.filter(({area}) => area.ensignUrl).forEach((competition) => {
-        const {name, plan, area, code, numberOfAvailableSeasons, lastUpdated} = competition;
-        competitions += `
+    const competitions = value.competitions
+        .filter(({area}) => area.ensignUrl)
+        .reduce((accumulator, {name, plan, area, code, numberOfAvailableSeasons, lastUpdated}) => (
+         accumulator += `
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img src="${area.ensignUrl}" class="activator">
+                    <img src="${area.ensignUrl}" alt="${name} picture" class="activator">
                 </div>
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">
@@ -29,6 +31,6 @@ export const getCompetitions = async (section) => {
                 </div>
             </div>
         `
-    });
+    ), '');
     section.innerHTML = competitions
 }
