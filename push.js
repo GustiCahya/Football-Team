@@ -6,18 +6,18 @@ const vapidKeys = {
 };
  
 webPush.setVapidDetails(
-   'mailto:gusticahyax@yahoo.com',
+   'mailto:example@yourdomain.org',
    vapidKeys.publicKey,
    vapidKeys.privateKey
 )
 const pushSubscription = {
-   "endpoint": "https://fcm.googleapis.com/fcm/send/chndXIKw7GM:APA91bETFtu39EESJxkGo47mtOCyAe6ZChYsDT3w1Vv585m-7CoDQ0dQ4LhlpYVEksi0DB9gWEaQW6PDIjyLXsrMB07xXyhFIIOGwi-PxkHhUCSO5-Cb0VOkmuod_cshQG5gCi6Y502B",
+   "endpoint": "https://fcm.googleapis.com/fcm/send/eWECUlMg4Cg:APA91bH5LC54VOP-56Nv4HUx-gLeNsKqQqmMlbk94-gMacaZCRvkNHnBCq81hWdjRSYZkn-xDFcQvc_t49Uj7Q61GYtWkGCQmGqaUkwGbjHyE1IyrYeOuhZzKPXJbMSJMtaT1lxQmRtH",
    "keys": {
-       "p256dh": "BBvLB7Tg++39XMM2ZUM39H2I6MVDBpo4AjsUaJmo2pFp4fk+IfUE8kGx4OOIcYgvXo5O49hdznGrIabn831Ke4A=",
-       "auth": "MtyEBGM6Fq0KLKVB2dnzeg=="
+       "p256dh": "BAPSqhBXsRnz3vAa+L+j6+D1CYP7QoUeLlOAQ98wryJR1Mk8+85lpHBjErcakYNsmnxDdJ6j1pMvRn8bkDaBENA=",
+       "auth": "ly9W/RSfMIdyg6Yt4Le9+Q=="
    }
 };
-const payload = 'Hello! this is a notification...';
+const payload = 'Hello! this is a notification from footballteam...';
  
 const options = {
    gcmAPIKey: '773744956151',
