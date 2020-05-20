@@ -10,5 +10,5 @@ content fetch V
 link theme html, link favicon, link favicon apple, desc title V
 manifest V
 service-worker (workbox) 4.3.1 V
-indexed db
+indexed db V
 push notification

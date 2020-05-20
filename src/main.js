@@ -12,6 +12,7 @@ import SavedCompetitions from './pages/SavedCompetitions/SavedCompetitions.page.
 import { getSavedCompetitions } from './pages/SavedCompetitions/SavedCompetitions.api.js';
 import FavoriteTeams from './pages/FavoriteTeams/FavoriteTeams.page.js';
 import { getFavoriteTeams } from './pages/FavoriteTeams/FavoriteTeams.api.js';
+import { requestPermission } from './utils/pushNotification.js';
 
 // Create SPA
 const app = {
@@ -39,6 +40,7 @@ const app = {
     app.route(currentPage)
   },
   route: function(currentPage){
+    // Cannot use switch case. It won't work instead I use if else.
     if(currentPage === "competitions"){
       $('.fcontent').innerHTML = Competitions();
       getCompetitions($('.cards-competitions'));
@@ -68,3 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
     app.init();
 
 });
+
+//Request Notification Permission
+requestPermission();

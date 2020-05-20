@@ -28,7 +28,7 @@ export const getSavedCompetitions = (section) => {
                    </div>
                </div>
            `), '');
-        section.innerHTML = savedCompetitions; 
+        section.innerHTML = savedCompetitions;
     });
 }
 

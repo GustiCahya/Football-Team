@@ -4,7 +4,7 @@ import Spinner from '../../components/Spinner/Spinner.component.js';
 export const getFavoriteTeams = (section) => {
     section.innerHTML = Spinner();
     getAllTeams().then((teams) => {
-        const savedTeams = teams
+        const favoriteTeams = teams
         .reduce((accumulator, {name, area, tla, crestUrl, shortName, address, phone, website, email, founded, clubColors, venue, lastUpdated}) => (
             accumulator += `
                 <div class="card">
@@ -35,7 +35,7 @@ export const getFavoriteTeams = (section) => {
                 </div>
             `
         ), '');
-        section.innerHTML = savedTeams; 
+        section.innerHTML = favoriteTeams;
     });
 }
 

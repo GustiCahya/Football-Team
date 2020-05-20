@@ -11,13 +11,13 @@ const dbPromised = idb.open("football-db", 1, function(upgradeDb) {
 
 export const saveCompetition = (competition) => {
     dbPromised
-        .then(function(db) {
+        .then((db) => {
             const tx = db.transaction("competitions", "readwrite");
             const store = tx.objectStore("competitions");
             store.add(competition);
             return tx.complete;
         })
-        .then(function() {
+        .then(() => {
             console.log("competition has been saved.");
         }).catch((err)=>console.log(err));
 }
@@ -39,13 +39,13 @@ export const getAllCompetitions = () => {
 
 export const saveTeam = (team) => {
     dbPromised
-        .then(function(db) {
+        .then((db) => {
             const tx = db.transaction("teams", "readwrite");
             const store = tx.objectStore("teams");
             store.add(team);
             return tx.complete;
         })
-        .then(function() {
+        .then(() => {
             console.log("team has been saved.");
         }).catch((err)=>console.log(err));
 }

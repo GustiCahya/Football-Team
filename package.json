@@ -39,6 +39,7 @@
     "shortName": "Football",
     "startURL": "./",
     "display": "standalone",
+    "gcm_sender_id": "773744956151",
     "theme": "#212121",
     "background": "#0e0c18",
     "generateIconOptions": {
