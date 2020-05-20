@@ -1,4 +1,5 @@
 import {BASE_URL, CREDENTIALS} from '../../settings/api.js';
+import {saveCompetition} from '../../utils/db.js';
 import Spinner from '../../components/Spinner/Spinner.component.js';
 
 export const getCompetitions = async (section) => {
@@ -7,7 +8,7 @@ export const getCompetitions = async (section) => {
     const value = await response.json();
     const competitions = value.competitions
         .filter(({area}) => area.ensignUrl)
-        .reduce((accumulator, {name, plan, area, code, numberOfAvailableSeasons, lastUpdated}) => (
+        .reduce((accumulator, {id, name, plan, area, code, numberOfAvailableSeasons, lastUpdated}) => (
          accumulator += `
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
@@ -19,7 +20,9 @@ export const getCompetitions = async (section) => {
                     </span>
                     <p>Plan: ${plan},</p>
                     <p>Area: ${area.name}</p>
-                    <a class="btn-floating btn-large halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    <button class="btn-save-competition btn-floating btn-large halfway-fab waves-effect waves-light red">
+                        <i data-id=${id} class="material-icons">add</i>
+                    </button>
                 </div>
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">
@@ -32,5 +35,13 @@ export const getCompetitions = async (section) => {
             </div>
         `
     ), '');
-    section.innerHTML = competitions
+    section.innerHTML = competitions;
+    // Button Action
+    section.querySelectorAll('.btn-save-competition').forEach(btn =>
+        btn.addEventListener('click', function(event){
+            const id = event.target.getAttribute('data-id');
+            const competition = value.competitions.find(competition => competition.id === parseInt(id));
+            saveCompetition(competition);
+        })
+    );
 }

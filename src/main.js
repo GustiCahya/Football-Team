@@ -8,6 +8,10 @@ import Teams from './pages/Teams/Teams.page.js';
 import { getTeams } from './pages/Teams/Teams.api.js';
 import Competitions from './pages/Competitions/Competitions.page.js';
 import { getCompetitions } from './pages/Competitions/Competitions.api.js';
+import SavedCompetitions from './pages/SavedCompetitions/SavedCompetitions.page.js';
+import { getSavedCompetitions } from './pages/SavedCompetitions/SavedCompetitions.api.js';
+import FavoriteTeams from './pages/FavoriteTeams/FavoriteTeams.page.js';
+import { getFavoriteTeams } from './pages/FavoriteTeams/FavoriteTeams.api.js';
 
 // Create SPA
 const app = {
@@ -17,7 +21,9 @@ const app = {
     })
     // Default page
     let currentPage = 'competitions';
-    history.replaceState({}, currentPage, `#${currentPage}`);
+    if(location.hash !== ''){
+      currentPage = location.hash.replace('#' ,'');
+    }
     app.route(currentPage);
     window.addEventListener('popstate', app.poppin);
   },
@@ -40,11 +46,11 @@ const app = {
       $('.fcontent').innerHTML = Teams();
       getTeams($('.cards-teams'));
     }else if(currentPage === "savedCompetitions"){
-      $('.fcontent').innerHTML = 'test';
-      getTeams($('.cards-competitions'));
+      $('.fcontent').innerHTML = SavedCompetitions();
+      getSavedCompetitions($('.cards-competitions'));
     }else if(currentPage === "favoriteTeams"){
-      $('.fcontent').innerHTML = 'test2';
-      getTeams($('.cards-teams'));
+      $('.fcontent').innerHTML = FavoriteTeams();
+      getFavoriteTeams($('.cards-teams'));
     }
   }
 }
@@ -61,4 +67,4 @@ document.addEventListener('DOMContentLoaded', () => {
     //Call Pages
     app.init();
 
-})
+});

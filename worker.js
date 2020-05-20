@@ -1,9 +1,27 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0/workbox-sw.js');
 
+// workbox.setConfig({debug: false});
+
 workbox.routing.registerRoute(
     new RegExp('https://api.football-data.org/v2/'),
-    workbox.strategies.cacheFirst()
+    workbox.strategies.cacheFirst({
+        cacheName: 'footballAPI'
+    })
 );
+
+workbox.routing.registerRoute(
+    new RegExp('(.*)\.(?:png|gif|jpg|jpeg|svg)$'),
+    workbox.strategies.cacheFirst({
+        cacheName: 'images'
+    })
+)
+
+workbox.routing.registerRoute(
+    new RegExp('manifest.webmanifest'),
+    workbox.strategies.cacheFirst({
+        cacheName: 'manifest'
+    })
+)
 
 workbox.routing.registerRoute(
     new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
@@ -19,6 +37,5 @@ workbox.routing.registerRoute(
         ],
     }),
 );
-
 
 workbox.precaching.precacheAndRoute([]);
