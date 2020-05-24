@@ -13,13 +13,13 @@ const dbPromise = openDB('football-db', 1, {
  
 export const idbCompetitions = {
   async get(key) {
-    return (await dbPromise).get('competitions', key);
+    return (await dbPromise).get('competitions', parseInt(key));
   },
   async add(val) {
-    return (await dbPromise).put('competitions', val).then(console.log("competition added"));
+    return (await dbPromise).put('competitions', val).then(()=>console.log("competition added"));
   },
   async delete(key) {
-    return (await dbPromise).delete('competitions', key).then(()=>{console.log("competition deleted");});
+    return (await dbPromise).delete('competitions', parseInt(key)).then(()=>{console.log("competition deleted");});
   },
   async clear() {
     return (await dbPromise).clear('competitions');
@@ -31,13 +31,13 @@ export const idbCompetitions = {
 
 export const idbTeams = {
   async get(key) {
-    return (await dbPromise).get('teams', key);
+    return (await dbPromise).get('teams', parseInt(key));
   },
   async add(val) {
     return (await dbPromise).put('teams', val).then(()=>console.log("team added"));
   },
   async delete(key) {
-    return (await dbPromise).delete('teams', key).then(()=>{console.log("team deleted");});
+    return (await dbPromise).delete('teams', parseInt(key)).then(()=>{console.log("team deleted");});
   },
   async clear() {
     return (await dbPromise).clear('teams');
