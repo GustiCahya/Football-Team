@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "idb": "^1.1.0",
+    "idb": "^5.0.3",
     "js": "^0.1.0",
     "lib": "^4.1.4",
     "parcel-plugin-pwa-manifest": "^3.0.6",

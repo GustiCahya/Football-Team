@@ -2912,10 +2912,10 @@ icss-replace-symbols@1.1.0, icss-replace-symbols@^1.1.0:
   resolved "https://registry.yarnpkg.com/icss-replace-symbols/-/icss-replace-symbols-1.1.0.tgz#06ea6f83679a7749e386cfe1fe812ae5db223ded"
   integrity sha1-Bupvg2ead0njhs/h/oEq5dsiPe0=
 
-idb@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/idb/-/idb-1.1.0.tgz#8a579ec733258d4fbe7863c1d55fd62abab097b7"
-  integrity sha1-ileexzMljU++eGPB1V/WKrqwl7c=
+idb@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/idb/-/idb-5.0.3.tgz#d69d8845ecfb9e7791edd77696e40e1fd9c3c82b"
+  integrity sha512-ozfTR2owoslXWtfyQU2/tEUK1SXkCUb7gLq0wpvGWM8EZRwHr1rajEQGVsWT1bgfBiAenj/OXTn7h+PskWAwbA==
 
 ieee754@^1.1.4:
   version "1.1.13"

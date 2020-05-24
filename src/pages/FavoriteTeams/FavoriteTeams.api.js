@@ -1,9 +1,9 @@
-import {getAllTeams, deleteTeam} from '../../utils/db.js';
+import {idbTeams} from '../../utils/db.js';
 import Spinner from '../../components/Spinner/Spinner.component.js';
 
 export const getFavoriteTeams = (section) => {
     section.innerHTML = Spinner();
-    getAllTeams().then((teams) => {
+    idbTeams.getAll().then((teams) => {
         const favoriteTeams = teams
         .reduce((accumulator, {id, name, area, tla, crestUrl, shortName, address, phone, website, email, founded, clubColors, venue, lastUpdated}) => (
             accumulator += `
@@ -43,8 +43,8 @@ export const getFavoriteTeams = (section) => {
         section.querySelectorAll('.btn-delete-team').forEach(btn =>
             btn.addEventListener('click', function(event){
                 const id = event.target.getAttribute('data-id');
-                deleteTeam(id);
-                location.reload();
+                idbTeams.delete(id);
+                getSavedCompetitions(section);
             })
         );
     });

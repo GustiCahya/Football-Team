@@ -1,5 +1,5 @@
 import {BASE_URL, CREDENTIALS} from '../../settings/api.js';
-import {saveTeam} from '../../utils/db.js';
+import {idbTeams} from '../../utils/db.js';
 import Spinner from '../../components/Spinner/Spinner.component.js';
 
 export const getTeams = async (section) => {
@@ -47,7 +47,7 @@ export const getTeams = async (section) => {
         btn.addEventListener('click', function(event){
             const id = event.target.getAttribute('data-id');
             const team = value.teams.find(team => team.id === parseInt(id));
-            saveTeam(team);
+            idbTeams.add(team);
         })
     );
 

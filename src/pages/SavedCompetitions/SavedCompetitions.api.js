@@ -1,9 +1,9 @@
-import {getAllCompetitions, deleteCompetition} from '../../utils/db.js';
+import {idbCompetitions} from '../../utils/db.js';
 import Spinner from '../../components/Spinner/Spinner.component.js';
 
 export const getSavedCompetitions = (section) => {
     section.innerHTML = Spinner();
-    getAllCompetitions().then((competitions) => {
+    idbCompetitions.getAll().then((competitions) => {
         const savedCompetitions = competitions
         .reduce((accumulator, {id, name, plan, area, code, numberOfAvailableSeasons, lastUpdated}) => (
             accumulator += `
@@ -36,8 +36,8 @@ export const getSavedCompetitions = (section) => {
         section.querySelectorAll('.btn-delete-competition').forEach(btn =>
             btn.addEventListener('click', function(event){
                 const id = event.target.getAttribute('data-id');
-                deleteCompetition(id);
-                location.reload();
+                idbCompetitions.delete(id);
+                getSavedCompetitions(section);
             })
         );
     });

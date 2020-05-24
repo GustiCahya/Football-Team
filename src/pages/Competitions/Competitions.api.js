@@ -1,5 +1,5 @@
 import {BASE_URL, CREDENTIALS} from '../../settings/api.js';
-import {saveCompetition} from '../../utils/db.js';
+import {idbCompetitions} from '../../utils/db.js';
 import Spinner from '../../components/Spinner/Spinner.component.js';
 
 export const getCompetitions = async (section) => {
@@ -41,7 +41,7 @@ export const getCompetitions = async (section) => {
         btn.addEventListener('click', function(event){
             const id = event.target.getAttribute('data-id');
             const competition = value.competitions.find(competition => competition.id === parseInt(id));
-            saveCompetition(competition);
+            idbCompetitions.add(competition);
         })
     );
 }
