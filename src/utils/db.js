@@ -14,12 +14,25 @@ export const saveCompetition = (competition) => {
         .then((db) => {
             const tx = db.transaction("competitions", "readwrite");
             const store = tx.objectStore("competitions");
-            store.add(competition);
+            store.put(competition);
             return tx.complete;
         })
         .then(() => {
             console.log("competition has been saved.");
-        }).catch((err)=>console.log(err));
+        })
+}
+
+export const deleteCompetition = (id) => {
+    dbPromised
+        .then((db) => {
+            const tx = db.transaction("competitions", "readwrite");
+            const store = tx.objectStore("competitions");
+            store.delete(id);
+            return tx.complete;
+        })
+        .then(() => {
+            console.log("competition has been deleted with id: "+id);
+        })
 }
 
 
@@ -33,7 +46,7 @@ export const getAllCompetitions = () => {
         })
         .then((competitions) => {
           resolve(competitions);
-        }).catch((err)=>console.log(err));
+        })
     });
 }
 
@@ -42,14 +55,26 @@ export const saveTeam = (team) => {
         .then((db) => {
             const tx = db.transaction("teams", "readwrite");
             const store = tx.objectStore("teams");
-            store.add(team);
+            store.put(team);
             return tx.complete;
         })
         .then(() => {
             console.log("team has been saved.");
-        }).catch((err)=>console.log(err));
+        })
 }
 
+export const deleteTeam = (id) => {
+  dbPromised
+      .then((db) => {
+          const tx = db.transaction("teams", "readwrite");
+          const store = tx.objectStore("teams");
+          store.delete(id);
+          return tx.complete;
+      })
+      .then(() => {
+          console.log("team has been deleted with id: "+id);
+      })
+}
 
 export const getAllTeams = () => {
     return new Promise((resolve, reject) => {
@@ -61,6 +86,6 @@ export const getAllTeams = () => {
         })
         .then((teams) => {
           resolve(teams);
-        }).catch((err)=>console.log(err));
+        })
     });
 }

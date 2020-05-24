@@ -1,11 +1,11 @@
-import {getAllTeams} from '../../utils/db.js';
+import {getAllTeams, deleteTeam} from '../../utils/db.js';
 import Spinner from '../../components/Spinner/Spinner.component.js';
 
 export const getFavoriteTeams = (section) => {
     section.innerHTML = Spinner();
     getAllTeams().then((teams) => {
         const favoriteTeams = teams
-        .reduce((accumulator, {name, area, tla, crestUrl, shortName, address, phone, website, email, founded, clubColors, venue, lastUpdated}) => (
+        .reduce((accumulator, {id, name, area, tla, crestUrl, shortName, address, phone, website, email, founded, clubColors, venue, lastUpdated}) => (
             accumulator += `
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
@@ -17,6 +17,9 @@ export const getFavoriteTeams = (section) => {
                         </span>
                         <p>TLA: ${tla}</p>
                         <p>Area: ${area.name}</p>
+                        <button class="btn-delete-team btn-floating btn-large halfway-fab waves-effect waves-light red">
+                           <i data-id=${id} class="material-icons">delete</i>
+                        </button>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">
@@ -36,6 +39,14 @@ export const getFavoriteTeams = (section) => {
             `
         ), '');
         section.innerHTML = favoriteTeams;
+        // Button Action
+        section.querySelectorAll('.btn-delete-team').forEach(btn =>
+            btn.addEventListener('click', function(event){
+                const id = event.target.getAttribute('data-id');
+                deleteTeam(id);
+                location.reload();
+            })
+        );
     });
 }
 

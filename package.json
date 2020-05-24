@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "idb": "1.0.1",
+    "idb": "^1.1.0",
     "js": "^0.1.0",
     "lib": "^4.1.4",
     "parcel-plugin-pwa-manifest": "^3.0.6",
@@ -30,8 +30,11 @@
     "last 3 opera versions",
     "last 3 ios_saf versions",
     "last 3 safari versions"
-  ],"workbox": {
-    "importScripts": ["./worker.js"],          
+  ],
+  "workbox": {
+    "importScripts": [
+      "./worker.js"
+    ],
     "globDirectory": "./dist"
   },
   "pwaManifest": {

@@ -1,4 +1,4 @@
-import {getAllCompetitions} from '../../utils/db.js';
+import {getAllCompetitions, deleteCompetition} from '../../utils/db.js';
 import Spinner from '../../components/Spinner/Spinner.component.js';
 
 export const getSavedCompetitions = (section) => {
@@ -17,6 +17,9 @@ export const getSavedCompetitions = (section) => {
                        </span>
                        <p>Plan: ${plan},</p>
                        <p>Area: ${area.name}</p>
+                       <button class="btn-delete-competition btn-floating btn-large halfway-fab waves-effect waves-light red">
+                           <i data-id=${id} class="material-icons">delete</i>
+                       </button>
                    </div>
                    <div class="card-reveal">
                        <span class="card-title grey-text text-darken-4">
@@ -29,6 +32,14 @@ export const getSavedCompetitions = (section) => {
                </div>
            `), '');
         section.innerHTML = savedCompetitions;
+        // Button Action
+        section.querySelectorAll('.btn-delete-competition').forEach(btn =>
+            btn.addEventListener('click', function(event){
+                const id = event.target.getAttribute('data-id');
+                deleteCompetition(id);
+                location.reload();
+            })
+        );
     });
 }
 
