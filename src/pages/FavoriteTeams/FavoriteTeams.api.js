@@ -44,7 +44,7 @@ export const getFavoriteTeams = (section) => {
             btn.addEventListener('click', function(event){
                 const id = event.target.getAttribute('data-id');
                 idbTeams.delete(id);
-                getSavedCompetitions(section);
+                getFavoriteTeams(section);
             })
         );
     });

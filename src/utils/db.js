@@ -16,10 +16,10 @@ export const idbCompetitions = {
     return (await dbPromise).get('competitions', key);
   },
   async add(val) {
-    return (await dbPromise).put('competitions', val).then(alert("competition added"));
+    return (await dbPromise).put('competitions', val).then(console.log("competition added"));
   },
   async delete(key) {
-    return (await dbPromise).delete('competitions', key).then(()=>{alert("competition deleted");});
+    return (await dbPromise).delete('competitions', key).then(()=>{console.log("competition deleted");});
   },
   async clear() {
     return (await dbPromise).clear('competitions');
@@ -31,18 +31,18 @@ export const idbCompetitions = {
 
 export const idbTeams = {
   async get(key) {
-    return (await dbPromise).get('competitions', key);
+    return (await dbPromise).get('teams', key);
   },
   async add(val) {
-    return (await dbPromise).put('competitions', val).then(()=>alert("teams added"));
+    return (await dbPromise).put('teams', val).then(()=>console.log("team added"));
   },
   async delete(key) {
-    return (await dbPromise).delete('competitions', key).then(()=>{alert("team deleted");});
+    return (await dbPromise).delete('teams', key).then(()=>{console.log("team deleted");});
   },
   async clear() {
-    return (await dbPromise).clear('competitions');
+    return (await dbPromise).clear('teams');
   },
   async getAll() {
-    return (await dbPromise).getAll('competitions');
+    return (await dbPromise).getAll('teams');
   },
 };
