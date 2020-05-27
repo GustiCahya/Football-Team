@@ -17,8 +17,8 @@ export const getFavoriteTeams = (section) => {
                         </span>
                         <p>TLA: ${tla}</p>
                         <p>Area: ${area.name}</p>
-                        <button class="btn-delete-team btn-floating btn-large halfway-fab waves-effect waves-light red">
-                           <i data-id=${id} class="material-icons">delete</i>
+                        <button data-id=${id} class="btn-delete-team btn-floating btn-large halfway-fab waves-effect waves-light red">
+                           <i class="material-icons">delete</i>
                         </button>
                     </div>
                     <div class="card-reveal">
@@ -38,11 +38,11 @@ export const getFavoriteTeams = (section) => {
                 </div>
             `
         ), '');
-        section.innerHTML = favoriteTeams;
+        section.innerHTML = (favoriteTeams || `<p style="text-align:center; color:#eee; font-size: 1.4rem; letter-spacing: .01rem">Favorite Teams haven't been added</p>`);
         // Button Action
         section.querySelectorAll('.btn-delete-team').forEach(btn =>
-            btn.addEventListener('click', function(event){
-                const id = event.target.getAttribute('data-id');
+            btn.addEventListener('click', function(){
+                const id = btn.getAttribute('data-id');
                 idbTeams.delete(id);
                 getFavoriteTeams(section);
             })

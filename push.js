@@ -1,8 +1,8 @@
 const webPush = require('web-push');
  
 const vapidKeys = {
-   "publicKey": "BIJFX-HVpMG8cXjIOHu7XW2Li4iEqgMXzuIUzWaojLg1FlgnvJ1Nlvye5YpbZH4TC7HJOdUBer1nwt6rbAoLdHo",
-   "privateKey": "rakPqqjsJjibv1nIhz3D0Zwm2kJKDNu9_TvrdDr_y_Q"
+   "publicKey": "BO-qthm5uIYjcuptecVM2LylLMmi0xaE9gB2KP8o-trhBrJwZvHp79ID_0duHklrQAyk-_SmDW6pKDm2kqBzDwU",
+   "privateKey": "8ZPcmOwOK8mxhMXuj7CmJ8kNEBDrUvpeboro75-_Qpc"
 };
  
 webPush.setVapidDetails(
@@ -11,16 +11,16 @@ webPush.setVapidDetails(
    vapidKeys.privateKey
 )
 const pushSubscription = {
-   "endpoint": "https://fcm.googleapis.com/fcm/send/eWECUlMg4Cg:APA91bH5LC54VOP-56Nv4HUx-gLeNsKqQqmMlbk94-gMacaZCRvkNHnBCq81hWdjRSYZkn-xDFcQvc_t49Uj7Q61GYtWkGCQmGqaUkwGbjHyE1IyrYeOuhZzKPXJbMSJMtaT1lxQmRtH",
+   "endpoint": "https://fcm.googleapis.com/fcm/send/c7z2QTFaufY:APA91bFqp0WqHfYV08SR1IYl_Crn6Q7Q_8U5qaV8kAGoMEqp6YlX93m96jbXru0ZH4hWVHtsKf5wo8r5ZVhS9Q-Tqr42ueyexDyBIIiYN7Cs3SQMB-IulVCicHBlZSIxwUDenEdDUBRy",
    "keys": {
-       "p256dh": "BAPSqhBXsRnz3vAa+L+j6+D1CYP7QoUeLlOAQ98wryJR1Mk8+85lpHBjErcakYNsmnxDdJ6j1pMvRn8bkDaBENA=",
-       "auth": "ly9W/RSfMIdyg6Yt4Le9+Q=="
+       "p256dh": "BCfYEkI1bBoacMcZilxNj8wGtR6KZh9WanbIKQiMfJOG65dtBrgQZWo2I7jAqDc47tTR9c2i7M6toC9tsEDpagw=",
+       "auth": "gU/nf8nTEAbKm16pFVjfzQ=="
    }
 };
 const payload = 'Hello! this is a notification from footballteam...';
  
 const options = {
-   gcmAPIKey: '773744956151',
+   gcmAPIKey: '388306245921',
    TTL: 60
 };
 webPush.sendNotification(

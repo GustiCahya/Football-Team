@@ -13,7 +13,7 @@ export const requestPermission = () => {
                 navigator.serviceWorker.getRegistration().then((registration) => {
                     registration.pushManager.subscribe({
                         userVisibleOnly: true,
-                        applicationServerKey: urlBase64ToUint8Array('BIJFX-HVpMG8cXjIOHu7XW2Li4iEqgMXzuIUzWaojLg1FlgnvJ1Nlvye5YpbZH4TC7HJOdUBer1nwt6rbAoLdHo') 
+                        applicationServerKey: urlBase64ToUint8Array('BO-qthm5uIYjcuptecVM2LylLMmi0xaE9gB2KP8o-trhBrJwZvHp79ID_0duHklrQAyk-_SmDW6pKDm2kqBzDwU') 
                     }).then(function(subscribe) {
                         console.log('the endpoint: ', subscribe.endpoint);
                         console.log('the p256dh key: ', btoa(String.fromCharCode.apply(

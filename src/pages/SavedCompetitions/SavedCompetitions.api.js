@@ -17,25 +17,25 @@ export const getSavedCompetitions = (section) => {
                        </span>
                        <p>Plan: ${plan},</p>
                        <p>Area: ${area.name}</p>
-                       <button class="btn-delete-competition btn-floating btn-large halfway-fab waves-effect waves-light red">
-                           <i data-id=${id} class="material-icons">delete</i>
+                       <button data-id=${id} class="btn-delete-competition btn-floating btn-large halfway-fab waves-effect waves-light red">
+                           <i class="material-icons">delete</i>
                        </button>
                    </div>
                    <div class="card-reveal">
                        <span class="card-title grey-text text-darken-4">
                            Description <i class="material-icons right">close</i>
                        </span>
-                       <p>Code: ${code ? code : 'not yet'}</p>
+                       <p>Code: ${code || 'not yet'}</p>
                        <p>Available Season: ${numberOfAvailableSeasons}</p>
                        <p>last Update: ${lastUpdated}</p>
                    </div>
                </div>
            `), '');
-        section.innerHTML = savedCompetitions;
+        section.innerHTML = (savedCompetitions || `<p style="text-align:center; color:#eee; font-size: 1.4rem; letter-spacing: .01rem">Saved Competitions haven't been added</p>`);
         // Button Action
         section.querySelectorAll('.btn-delete-competition').forEach(btn =>
-            btn.addEventListener('click', function(event){
-                const id = event.target.getAttribute('data-id');
+            btn.addEventListener('click', function(){
+                const id = btn.getAttribute('data-id');
                 idbCompetitions.delete(id);
                 getSavedCompetitions(section);
             })

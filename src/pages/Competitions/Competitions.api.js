@@ -20,8 +20,8 @@ export const getCompetitions = async (section) => {
                     </span>
                     <p>Plan: ${plan},</p>
                     <p>Area: ${area.name}</p>
-                    <button class="btn-save-competition btn-floating btn-large halfway-fab waves-effect waves-light red">
-                        <i data-id=${id} class="material-icons">add</i>
+                    <button data-id=${id} class="btn-save-competition btn-floating btn-large halfway-fab waves-effect waves-light red">
+                        <i class="material-icons">add</i>
                     </button>
                 </div>
                 <div class="card-reveal">
@@ -37,11 +37,20 @@ export const getCompetitions = async (section) => {
     ), '');
     section.innerHTML = competitions;
     // Button Action
-    section.querySelectorAll('.btn-save-competition').forEach(btn =>
-        btn.addEventListener('click', function(event){
-            const id = event.target.getAttribute('data-id');
+    section.querySelectorAll('.btn-save-competition').forEach(btn => {
+        const id = btn.getAttribute('data-id');
+        idbCompetitions.get(id)
+            .then(value => (value.id === parseInt(id)) ? btn.setAttribute("disabled", "disabled") : '')
+            .catch(err => err);
+    })
+    section.querySelectorAll('.btn-save-competition').forEach(btn => {
+        btn.addEventListener('click', function(){
+            const id = btn.getAttribute('data-id');
             const competition = value.competitions.find(competition => competition.id === parseInt(id));
             idbCompetitions.add(competition);
+            idbCompetitions.get(id)
+                .then(value => (value.id === parseInt(id)) ? btn.setAttribute("disabled", "disabled") : '')
+                .catch(err => err);
         })
-    );
+    });
 }

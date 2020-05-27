@@ -20,8 +20,8 @@ export const getTeams = async (section) => {
                     </span>
                     <p>TLA: ${tla}</p>
                     <p>Area: ${area.name}</p>
-                    <button class="btn-save-team btn-floating btn-large halfway-fab waves-effect waves-light red">
-                        <i data-id=${id} class="material-icons">add</i>
+                    <button data-id=${id} class="btn-save-team btn-floating btn-large halfway-fab waves-effect waves-light red">
+                        <i class="material-icons">add</i>
                     </button>
                 </div>
                 <div class="card-reveal">
@@ -43,12 +43,20 @@ export const getTeams = async (section) => {
     ), '');
     section.innerHTML = teams;
     // Button Action
+    section.querySelectorAll('.btn-save-team').forEach(btn => {
+        const id = btn.getAttribute('data-id');
+        idbTeams.get(id)
+            .then(value => (value.id === parseInt(id)) ? btn.setAttribute("disabled", "disabled") : '')
+            .catch(err => err);
+    })
     section.querySelectorAll('.btn-save-team').forEach(btn =>
-        btn.addEventListener('click', function(event){
-            const id = event.target.getAttribute('data-id');
+        btn.addEventListener('click', function(){
+            const id = btn.getAttribute('data-id');
             const team = value.teams.find(team => team.id === parseInt(id));
             idbTeams.add(team);
+            idbTeams.get(id)
+                .then(value => (value.id === parseInt(id)) ? btn.setAttribute("disabled", "disabled") : '')
+                .catch(err => err);
         })
     );
-
 }
