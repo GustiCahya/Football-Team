@@ -40,19 +40,22 @@ const app = {
     app.route(currentPage)
   },
   route: function(currentPage){
-    // Cannot use switch case. It won't work instead I use if else.
-    if(currentPage === "competitions"){
-      $('.fcontent').innerHTML = Competitions();
-      getCompetitions($('.cards-competitions'));
-    }else if(currentPage === "teams"){
-      $('.fcontent').innerHTML = Teams();
-      getTeams($('.cards-teams'));
-    }else if(currentPage === "savedCompetitions"){
-      $('.fcontent').innerHTML = SavedCompetitions();
-      getSavedCompetitions($('.cards-competitions'));
-    }else if(currentPage === "favoriteTeams"){
-      $('.fcontent').innerHTML = FavoriteTeams();
-      getFavoriteTeams($('.cards-teams'));
+    switch(currentPage){
+      case "competitions":
+        $('.fcontent').innerHTML = Competitions();
+        getCompetitions($('.cards-competitions'));
+        break;
+      case "teams":
+        $('.fcontent').innerHTML = Teams();
+        getTeams($('.cards-teams'));
+        break;
+      case "savedCompetitions":
+        $('.fcontent').innerHTML = SavedCompetitions();
+        getSavedCompetitions($('.cards-competitions'));
+        break;
+      case "favoriteTeams":
+        $('.fcontent').innerHTML = FavoriteTeams();
+        getFavoriteTeams($('.cards-teams'));
     }
   }
 }
